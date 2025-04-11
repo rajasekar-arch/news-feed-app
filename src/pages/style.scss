@@ -1,0 +1,18 @@
+/* globals.css */
+
+html, body {
+    height: 100%; /* Make sure the page fills the entire viewport */
+    margin: 0; /* Remove default margins */
+    font-family: Arial, sans-serif; /* Add your preferred font */
+  }
+  
+  #__next {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Full height of the viewport */
+  }
+  
+  main {
+    flex-grow: 1; /* This allows the main content to take up remaining space */
+  }
+  
