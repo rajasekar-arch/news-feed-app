@@ -1,0 +1,23 @@
+.cardItem {
+  flex: 1 1 200px;
+  max-width: 300px;
+  min-width: 200px;
+
+  border: 1px solid #ccc;
+  padding: 1rem;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  transition: transform 0.2s ease;
+}
+
+.cardItem:hover {
+  transform: scale(1.02);
+}
+
+.cardContainer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: flex-start;
+}

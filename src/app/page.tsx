@@ -1,21 +1,14 @@
-import Footer from "@/components/Footer";
-import Header from "@/components/Header";
+import CardItem from "@/components/CardItem/CardItem";
+
+import { cardItems } from "@/mock-data/card-item-data";
 
 export default function Home() {
   return (
-    <>
-      <Header id={1} />
-      <div style={styles.mainpage}>
-        mainpage
-      </div>
-      <Footer />
-    </>
+    <main>
+      <h1>Home Page</h1>
+      {cardItems.map((item) => (
+        <CardItem key={item.id} {...item} />
+      ))}
+    </main>
   );
-}
-
-const styles = {
-  mainpage: {
-    display:'flex',
-    minHeight:'80vh',
-  },
 }
