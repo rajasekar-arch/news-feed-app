@@ -1,23 +1,42 @@
-.cardItem {
-  flex: 1 1 200px;
-  max-width: 300px;
-  min-width: 200px;
+.cardContainer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem; /* Space between cards */
+  justify-content: flex-start; /* Align items to the left horizontally */
+  align-items: flex-start; /* Align items to the top vertically */
+  padding: 1rem; /* Optional padding around the container */
+  box-sizing: border-box; /* Ensure padding doesn't affect layout width */
+}
 
+.cardItem {
+  flex: 1 1 calc(33.333% - 1rem); /* 3 items per row, with space in-between */
+  max-width: 300px; /* Limit the max-width of the card */
+  min-width: 200px; /* Minimum width to maintain responsiveness */
   border: 1px solid #ccc;
   padding: 1rem;
   background: white;
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
   transition: transform 0.2s ease;
+  display: flex;
+  flex-direction: column; /* Align content vertically */
+  justify-content: flex-start; /* Align content from top */
+  align-items: flex-start; /* Align content from left */
+  box-sizing: border-box; /* Prevent padding from affecting layout */
 }
 
 .cardItem:hover {
-  transform: scale(1.02);
+  transform: scale(1.02); /* Slight zoom effect on hover */
 }
 
-.cardContainer {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1rem;
-  justify-content: flex-start;
+.cardItemTitle { /* New local class for h3 */
+  margin: 0;
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.cardItemDescription { /* New local class for p */
+  margin: 0.5rem 0;
+  font-size: 1rem;
+  color: #555;
 }

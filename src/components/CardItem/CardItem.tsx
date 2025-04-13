@@ -12,10 +12,10 @@ type CardProps = {
 
 export default function CardItem({ id, title, description }: CardProps) {
   return (
-    <div  className={styles.cardItem}>
-      <h3>{title}</h3>
-      <p>{description}</p>
-      <Link href={`/home/${id}`}>View Details</Link>
-    </div>
+    <div className={styles.cardItem}>
+    <h3 className={styles.cardItemTitle}>{title}</h3> {/* Apply local class here */}
+    <p className={styles.cardItemDescription}>{description}</p> {/* Apply local class here */}
+    <Link href={`/home/${id}`}>View Details</Link>
+  </div>
   );
 }
