@@ -2,7 +2,7 @@
 import { cardItems } from '@/mock-data/card-item-data';
 import Link from 'next/link';
 
-type Props = {
+interface Props {
   params: {
     id: string;
   };
