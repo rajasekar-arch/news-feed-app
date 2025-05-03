@@ -27,11 +27,22 @@ interface itemFeed {
 
 export default function Home() {
   const [articles, setArticles] = useState<itemFeed[]>([]);
+  const [loading, setLoading] = useState<boolean>(true);
 
   useEffect(() => {
-    fetch('/api/rss')
-      .then(res => res.json())
-      .then(data => setArticles(data));
+    const fetchNews = async () => {
+      try {
+        const res = await fetch('/api/rss');
+        const data = await res.json();
+        setArticles(data);
+      } catch (err) {
+        console.error('Failed to load news:', err);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchNews();
   }, []);
 
   // useEffect(() => {
@@ -43,17 +54,25 @@ export default function Home() {
 
   return (
     <main>
-      <div className={styles.cardContainer}>
-        {articles.map((article, index) => (
-          <NewsCard
-            key={index}
-            title={article?.title}
-            description={article.content}
-            url={article.link}
-            source={article.title}
-          />
-        ))}
-      </div>
+      {loading ? (
+        <div className="flex justify-center items-center h-40">
+          <div className="w-6 h-6 border-4 border-blue-500 border-t-transparent rounded-full animate-spin"></div>
+          <span className="ml-2 text-blue-600">Loading news...</span>
+        </div>
+      ) : (
+        <div className={styles.cardContainer}>
+          {articles.map((article, index) => (
+            <NewsCard
+              key={index}
+              title={article?.title}
+              description={article.content}
+              url={article.link}
+              source={article.title}
+            />
+          ))}
+        </div>
+      )}
     </main>
   );
+  
 }
