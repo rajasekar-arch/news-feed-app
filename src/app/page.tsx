@@ -23,6 +23,7 @@ interface itemFeed {
   contentSnippet:string;
   guid: string;   
   isoDate: Date | string;
+  pubDate: string;
 }
 
 export default function Home() {
@@ -67,12 +68,11 @@ export default function Home() {
               title={article?.title}
               description={article.content}
               url={article.link}
-              source={article.title}
+              source={article.pubDate}
             />
           ))}
         </div>
       )}
     </main>
   );
-  
 }

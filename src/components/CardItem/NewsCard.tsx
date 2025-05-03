@@ -18,7 +18,7 @@ const NewsCard: React.FC<NewsCardProps> = ({ title, description, url, source }) 
         <h2 className="text-xl font-semibold text-gray-800">{title}</h2>
         <p className="text-gray-600 mt-2">{description}</p>
         <div className="mt-4 flex justify-between items-center">
-          {source && <span className="text-sm text-gray-500">Source: {source}</span>}
+          {source && <span className="text-sm text-gray-500">Date: {source}</span>}
           <a
             href={url}
             className="text-blue-600 font-medium hover:underline"
