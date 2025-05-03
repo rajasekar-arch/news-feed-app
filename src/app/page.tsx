@@ -1,30 +1,45 @@
 "use client";
 
-import styles from '@/components/CardItem/NewsCard.module.scss';
+import styles from "@/components/CardItem/NewsCard.module.scss";
 import NewsCard from "@/components/CardItem/NewsCard";
-const API_KEY = process.env.NEXT_PUBLIC_NEWS_API_KEY;
-const url = `https://newsapi.org/v2/top-headlines?country=us&category=general&apiKey=${API_KEY}`;
+// const API_KEY = process.env.NEXT_PUBLIC_NEWS_API_KEY;
+// const url = `https://newsapi.org/v2/top-headlines?country=us&category=general&apiKey=${API_KEY}`;
 
 import { useEffect, useState } from "react";
 
-interface Article {
+// interface Article {
+//   title: string;
+//   description: string;
+//   url: string;
+//   source?: {
+//     name: string;
+//   };
+// }
+
+interface itemFeed {
   title: string;
-  description: string;
-  url: string;
-  source?: {
-    name: string;
-  };
+  link: string;       
+  content: string;
+  contentSnippet:string;
+  guid: string;   
+  isoDate: Date | string;
 }
 
-
 export default function Home() {
-  const [articles, setArticles] = useState<Article[]>([]);
+  const [articles, setArticles] = useState<itemFeed[]>([]);
+
   useEffect(() => {
-    fetch(url)
-      .then((res) => res.json())
-      .then((data) => setArticles(data.articles))
-      .catch((err) => console.error(err));
+    fetch('/api/rss')
+      .then(res => res.json())
+      .then(data => setArticles(data));
   }, []);
+
+  // useEffect(() => {
+  //   fetch(url)
+  //     .then((res) => res.json())
+  //     .then((data) => setArticles(data.articles))
+  //     .catch((err) => console.error(err));
+  // }, []);
 
   return (
     <main>
@@ -33,13 +48,12 @@ export default function Home() {
           <NewsCard
             key={index}
             title={article?.title}
-            description={article.description}
-            url={article.url}
-            source={article.source?.name}
+            description={article.content}
+            url={article.link}
+            source={article.title}
           />
         ))}
       </div>
-
     </main>
   );
 }
